@@ -26,19 +26,6 @@ import java.util.ArrayList;
 
 public class ObsStations extends AppCompatActivity {
 
-    public class BobJSONObject extends JSONObject {
-
-        public String getStringWithDefault(String key, String default_result) {
-            String result;
-            try {
-                result = super.getString(key);
-            } catch (JSONException e) {
-                result = default_result;
-            }
-            return result;
-        }
-    }
-
     public class BackgroundAsyncTask extends AsyncTask<Void, Void, String>{
         Context context;
 
@@ -61,7 +48,6 @@ public class ObsStations extends AppCompatActivity {
 
         @Override
         protected void onPreExecute(){
-            return;
         }
         @Override
         protected String doInBackground(Void... params){
@@ -86,8 +72,8 @@ public class ObsStations extends AppCompatActivity {
         protected void onPostExecute(String result){
             Toast.makeText(getApplicationContext(),"Got it!",Toast.LENGTH_SHORT).show();
 
-            JSONArray jsonArray = new JSONArray();
-            ArrayList<StationItem> stationItems = new ArrayList<StationItem>();
+            JSONArray jsonArray;
+            ArrayList<StationItem> stationItems = new ArrayList<>();
 
             try {
                 jsonArray = new JSONArray(result);
