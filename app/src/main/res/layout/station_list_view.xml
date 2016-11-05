@@ -10,7 +10,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:paddingRight="10dp"
-        android:src="@drawable/ndbc_icon" />
+        android:maxWidth="30dp"
+        android:minWidth="30dp" />
 
     <TextView
         android:id="@+id/stationName"

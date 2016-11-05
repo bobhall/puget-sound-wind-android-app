@@ -35,6 +35,9 @@ public class ObsStations extends AppCompatActivity {
         private static final String DATE_TIME = "time";
         private static final String WIND_SPEED = "wind_speed";
         private static final String STATION_NAME = "station_name";
+        private static final String VESSEL_NAME = "vessel_name";
+        private static final String STATION_TYPE = "station_type";
+
 
         protected String getStringFromJSONObject(JSONObject row, String key, String default_value) {
             String result;
@@ -84,9 +87,25 @@ public class ObsStations extends AppCompatActivity {
                     String weather = getStringFromJSONObject(row, WIND_SPEED, "null") + "kts " +
                          getStringFromJSONObject(row, WIND_DIRECTION, "(no dir)");
 
+                    StationItem.StationType st;
+                    String objStationType = row.getString(STATION_TYPE);
+                    if (objStationType.equals("ferry")) {
+                        st = StationItem.StationType.FERRY;
+                    }
+                    else if (objStationType.equals("ndbc")) {
+                        st = StationItem.StationType.NOAA;
+                    }
+                    else if (objStationType.equals("cgr")) {
+                        st = StationItem.StationType.CGR;
+                    }
+                    else {
+                        st = StationItem.StationType.UNKNOWN;
+                    }
+
                     stationItems.add(new StationItem(getStringFromJSONObject(row, STATION_NAME, "unknown station"),
                                                      weather,
-                                                     getStringFromJSONObject(row, DATE_TIME, "time unknown")));
+                                                     getStringFromJSONObject(row, DATE_TIME, "time unknown"),
+                                                     st));
                 }
             } catch (JSONException e) {
                 Log.e(TAG, e.toString());

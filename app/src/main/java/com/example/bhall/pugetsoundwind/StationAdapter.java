@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -48,6 +49,18 @@ public class StationAdapter extends BaseAdapter {
         if (null == view) {
             view = inflater.inflate(R.layout.station_list_view, null);
         }
+
+        ImageView station_image = (ImageView) view.findViewById(R.id.ndbcLandStation);
+        if (stations.get(position).station_type == StationItem.StationType.FERRY) {
+            station_image.setImageResource(R.drawable.wa_ferry_logo);
+        }
+        else if (stations.get(position).station_type == StationItem.StationType.NOAA) {
+            station_image.setImageResource(R.drawable.noaa_logo);
+        }
+        else {
+            station_image.setImageResource(R.drawable.coast_guard_logo);
+        }
+
         TextView station_text = (TextView) view.findViewById(R.id.stationName);
         station_text.setText(stations.get(position).name);
 
