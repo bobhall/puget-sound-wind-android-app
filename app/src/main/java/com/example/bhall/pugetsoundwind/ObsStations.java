@@ -1,15 +1,16 @@
 package com.example.bhall.pugetsoundwind;
 
+
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ListViewCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +36,6 @@ public class ObsStations extends AppCompatActivity {
         private static final String DATE_TIME = "time";
         private static final String WIND_SPEED = "wind_speed";
         private static final String STATION_NAME = "station_name";
-        private static final String VESSEL_NAME = "vessel_name";
         private static final String STATION_TYPE = "station_type";
 
 
@@ -54,9 +54,10 @@ public class ObsStations extends AppCompatActivity {
         }
         @Override
         protected String doInBackground(Void... params){
+
             StringBuilder builder = new StringBuilder();
             try {
-                URL url = new URL("http://b.obhall.com/obs");
+                URL url = new URL("https://b.obhall.com/obs");
                 HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
                 InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
